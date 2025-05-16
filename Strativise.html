@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strativise - Driving Transformative Growth & Strategic Investments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0F1F; /* Even darker slate/navy */
+            color: #E0E7FF; /* Lighter slate for text */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .active-nav {
+            color: #F5B041; /* A richer amber/gold */
+            border-bottom: 2px solid #F5B041;
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FAD02C; /* Brighter gold for hover */
+        }
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+            min-height: 80vh; /* Ensure sections have some height */
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #0A0F1F 0%, #172A46 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button {
+            background-color: #F5B041;
+            color: #0A0F1F;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 176, 65, 0.2);
+        }
+        .cta-button:hover {
+            background-color: #FAD02C;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(250, 208, 44, 0.3);
+        }
+        .secondary-cta-button {
+            border: 2px solid #F5B041;
+            color: #F5B041;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .secondary-cta-button:hover {
+            background-color: #F5B041;
+            color: #0A0F1F;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 4px 15px rgba(245, 176, 65, 0.2);
+        }
+        .icon-feature i {
+            color: #F5B041;
+            transition: transform 0.3s ease;
+        }
+        .dark-card {
+            background-color: rgba(29, 42, 68, 0.5); 
+            border: 1px solid #2D3748; 
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dark-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .dark-card .icon-feature:hover i {
+             transform: scale(1.2) rotate(10deg);
+        }
+        .portfolio-card img {
+            transition: transform 0.4s ease-in-out, filter 0.4s ease;
+        }
+        .portfolio-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #FAD02C, #F5B041, #E67E22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title-underline {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #F5B041;
+            border-radius: 2px;
+        }
+        .illustration-placeholder, .quiz-placeholder, .scorecard-placeholder, .framework-visualizer-placeholder {
+            width: 100%;
+            min-height: 300px; 
+            background-color: rgba(30, 41, 59, 0.3); /* slate-800 with some transparency */
+            border-radius: 0.75rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #64748B; /* slate-500 */
+            font-size: 1.25rem; 
+            border: 2px dashed #4A5568; /* slate-600 */
+            padding: 2rem;
+            text-align: center;
+        }
+        .calculator-module, .tool-module { /* Generalizing calculator module style */
+            background-color: rgba(30, 41, 59, 0.7); 
+            padding: 2rem;
+            border-radius: 0.75rem; 
+            border: 1px solid #334155; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .tool-module label, .calculator-module label {
+            color: #F5B041; 
+            font-weight: 600; 
+        }
+        .tool-module input, .tool-module select, .tool-module textarea,
+        .calculator-module input, .calculator-module select {
+            background-color: #0F172A; 
+            border: 1px solid #4A5568; 
+            color: #E0E7FF; 
+            padding: 0.75rem;
+            border-radius: 0.375rem; 
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .tool-module input:focus, .tool-module select:focus, .tool-module textarea:focus,
+        .calculator-module input:focus, .calculator-module select:focus {
+            border-color: #F5B041; 
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(245, 176, 65, 0.3);
+        }
+        .calculator-results, .tool-results {
+            margin-top: 1.5rem; 
+            padding: 1rem;
+            background-color: #0A0F1F; 
+            border-radius: 0.375rem; 
+            border: 1px dashed #4A5568; 
+            color: #94A3B8; 
+        }
+        .floating-element {
+            position: absolute;
+            background-color: rgba(245, 176, 65, 0.1); 
+            border-radius: 50%;
+            filter: blur(50px); 
+            z-index: -1; 
+            animation: float 15s infinite ease-in-out alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px) scale(1); }
+            50% { transform: translateY(-30px) translateX(20px) scale(1.2); }
+            100% { transform: translateY(0px) translateX(0px) scale(1); }
+        }
+        /* Resource Hub Card Style */
+        .resource-card {
+            background-color: rgba(29, 42, 68, 0.6); /* Slightly more opaque than dark-card */
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .resource-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+        }
+        .resource-card img {
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-bottom: 1rem; /* mb-4 */
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="floating-element" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+    <div class="floating-element" style="width: 200px; height: 200px; top: 60%; right: 10%; animation-delay: -5s;"></div>
+
+    <header class="bg-slate-900/70 backdrop-blur-lg sticky top-0 z-50 shadow-2xl">
+        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-4xl font-display font-bold text-gradient nav-link" data-target="home">Strativise</a>
+            <div class="space-x-6 text-lg">
+                <a href="#" class="nav-link active-nav" data-target="home">Home</a>
+                <a href="#" class="nav-link" data-target="about">About</a>
+                <a href="#" class="nav-link" data-target="services">Services</a>
+                <a href="#" class="nav-link" data-target="edge">Our Edge</a>
+                <a href="#" class="nav-link" data-target="tools">Tools</a>
+                <a href="#" class="nav-link" data-target="resources">Insights</a>
+                <a href="#" class="nav-link" data-target="portfolio">Portfolio</a>
+                <a href="#" class="nav-link" data-target="contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="section active">
+            <div class="hero-bg min-h-screen flex items-center relative">
+                <div class="container mx-auto px-6 py-24 text-left z-10">
+                    <div class="max-w-3xl">
+                        <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
+                            <span class="text-gradient">Transformative Growth.</span><br/> Strategic Investments. Global Impact.
+                        </h1>
+                        <p class="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed">
+                            Strativise empowers businesses to scale new heights, secure vital capital, and optimize commercial operations for unparalleled market leadership. We don't just advise; we partner for results.
+                        </p>
+                        <div>
+                            <a href="#" class="cta-button font-semibold py-4 px-10 rounded-lg text-lg mr-4 mb-4 md:mb-0" data-target="contact" onclick="navigateToSection(event)">Schedule Your Discovery Call</a>
+                            <a href="#" class="secondary-cta-button font-semibold py-4 px-10 rounded-lg text-lg" data-target="services" onclick="navigateToSection(event)">Explore Our Expertise</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 right-0 w-1/2 h-full opacity-20 overflow-hidden z-0">
+                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="heroIllustrationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#F5B041;stop-opacity:0.5"/>
+                                <stop offset="100%" style="stop-color:#E67E22;stop-opacity:0.1"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#heroIllustrationGradient)" d="M393.5,363Q337,476,226.5,451.5Q116,427,102.5,313.5Q89,200,129,123Q169,46,268,58.5Q367,71,398.5,185.5Q430,300,393.5,363Z" transform="translate(0 0) scale(1.2) rotate(15 250 250)"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="py-20 md:py-32 bg-slate-900/50 backdrop-blur-sm">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-4xl font-display font-bold text-center text-white mb-4 section-title-underline">Our Core Expertise</h2>
+                    <p class="text-center text-slate-400 mb-16 text-lg max-w-2xl mx-auto">Pioneering strategies across critical business domains to unlock your company's full potential.</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="dark-card p-8 rounded-xl shadow-2xl text-center">
+                            <div class="icon-feature text-5xl mb-6"><i class="fas fa-globe-americas"></i></div>
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-3">Global Expansion</h3>
+                            <p class="text-slate-300 leading-relaxed">Navigate new markets with precision and confidence.</p>
+                        </div>
+                        <div class="dark-card p-8 rounded-xl shadow-2xl text-center">
+                            <div class="icon-feature text-5xl mb-6"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-3">Commercial Excellence</h3>
+                            <p class="text-slate-300 leading-relaxed">Architect high-performance sales and commercial engines.</p>
+                        </div>
+                        <div class="dark-card p-8 rounded-xl shadow-2xl text-center">
+                            <div class="icon-feature text-5xl mb-6"><i class="fas fa-hand-holding-usd"></i></div>
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-3">Investment Strategy</h3>
+                            <p class="text-slate-300 leading-relaxed">Secure capital and structure investments for exponential growth.</p>
+                        </div>
+                        <div class="dark-card p-8 rounded-xl shadow-2xl text-center">
+                            <div class="icon-feature text-5xl mb-6"><i class="fas fa-users-cog"></i></div>
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-3">Strategic Alliances</h3>
+                            <p class="text-slate-300 leading-relaxed">Build powerful partnerships that amplify market reach.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="py-20 md:py-32 bg-slate-900">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl font-display font-bold text-white mb-4 section-title-underline">Proven Track Record</h2>
+                    <p class="text-xl text-slate-300 mb-12 max-w-3xl mx-auto">We deliver quantifiable results that speak volumes. Our clients' success is our benchmark.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
+                        <div class="p-6 bg-slate-800/70 rounded-lg shadow-xl border border-slate-700">
+                            <p class="text-5xl font-extrabold text-gradient mb-2">10x</p>
+                            <p class="text-slate-300">Revenue Growth</p>
+                        </div>
+                        <div class="p-6 bg-slate-800/70 rounded-lg shadow-xl border border-slate-700">
+                            <p class="text-5xl font-extrabold text-gradient mb-2">€1M+</p>
+                            <p class="text-slate-300">Deals Secured</p>
+                        </div>
+                        <div class="p-6 bg-slate-800/70 rounded-lg shadow-xl border border-slate-700">
+                            <p class="text-5xl font-extrabold text-gradient mb-2">8+</p>
+                            <p class="text-slate-300">Global Markets Entered</p>
+                        </div>
+                        <div class="p-6 bg-slate-800/70 rounded-lg shadow-xl border border-slate-700">
+                            <p class="text-4xl font-extrabold text-gradient mb-2">35%</p>
+                            <p class="text-slate-300">Conversion Uplift</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section py-20 md:py-32 bg-slate-900/50 backdrop-blur-sm">
+             <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">The Strategist Behind Strativise</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <div class="illustration-placeholder mb-8"><span>Abstract Executive Illustration Area</span></div>
+                        <h3 class="text-4xl font-display font-semibold text-gradient mb-6">My Story: A Legacy of C-Level Impact</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                            With over 8 years forging success at the C-level, my expertise lies in architecting transformative change. I've built and revitalized sales and commercial departments from inception, mentored underperforming teams to excellence, and driven ambitious global expansion strategies. My current focus is on pioneering capital raising and strategic investment pathways, backed by a profound insight into market intricacies and investor motivations.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-display font-semibold text-gradient mb-6">My Approach: Insight-Driven, Action-Oriented</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                            My philosophy marries data-centric strategies with decisive, hands-on leadership. I am dedicated to delivering not just plans, but palpable, measurable outcomes that translate directly into your organization's sustained growth and market dominance.
+                        </p>
+                        <h3 class="text-3xl font-semibold text-amber-400 mb-4">Key Areas of Expertise:</h3>
+                        <ul class="list-none space-y-3">
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>Global Business Development & GTM Strategy</li>
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>Investment Strategy & Capital Acquisition (PE, VC, Funds)</li>
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>Sales & Commercial Department Architecture / Transformation</li>
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>M&A Advisory, Due Diligence, & Integration</li>
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>Strategic Partnership & Ecosystem Development</li>
+                            <li class="flex items-center text-slate-300 text-lg"><i class="fas fa-check-circle text-amber-500 mr-3"></i>Data-Driven Business Analysis & Process Optimization (AI, Low-Code)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section py-20 md:py-32 bg-slate-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">Our Spectrum of Strategic Services</h2>
+                <div class="space-y-12">
+                    <div class="dark-card p-8 md:p-10 rounded-xl shadow-2xl flex flex-col md:flex-row items-start md:items-center">
+                        <div class="icon-feature text-5xl md:mr-8 mb-6 md:mb-0"><i class="fas fa-rocket"></i></div>
+                        <div>
+                            <h3 class="text-3xl font-semibold text-amber-400 mb-3">I. Strategic Growth & Global Expansion</h3>
+                            <ul class="list-disc list-inside text-slate-300 text-lg space-y-2">
+                                <li>International Market Entry & GTM Strategy (MENA, Europe, Asia, USA).</li>
+                                <li>New Product & Service Launch Validation and Execution.</li>
+                                <li>Business Model Innovation & Future-Proofing.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="dark-card p-8 md:p-10 rounded-xl shadow-2xl flex flex-col md:flex-row items-start md:items-center">
+                        <div class="icon-feature text-5xl md:mr-8 mb-6 md:mb-0"><i class="fas fa-drafting-compass"></i></div>
+                        <div>
+                            <h3 class="text-3xl font-semibold text-amber-400 mb-3">II. Sales & Commercial Architecture</h3>
+                            <ul class="list-disc list-inside text-slate-300 text-lg space-y-2">
+                                <li>Building High-Performance Sales Departments From Scratch.</li>
+                                <li>Sales Team Restructuring & Performance Turnaround.</li>
+                                <li>B2B Enterprise Sales Strategy for Fortune 500 Engagement.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="dark-card p-8 md:p-10 rounded-xl shadow-2xl flex flex-col md:flex-row items-start md:items-center">
+                        <div class="icon-feature text-5xl md:mr-8 mb-6 md:mb-0"><i class="fas fa-chart-pie"></i></div>
+                        <div>
+                            <h3 class="text-3xl font-semibold text-amber-400 mb-3">III. Investment, Capital & M&A</h3>
+                            <ul class="list-disc list-inside text-slate-300 text-lg space-y-2">
+                                <li>Capital Raising Strategy & Execution (PE, VC, Lenders).</li>
+                                <li>M&A Advisory, Due Diligence, and Integration.</li>
+                                <li>Innovative Funding Structure Development (Crowdfunding, etc.).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dark-card p-8 md:p-10 rounded-xl shadow-2xl flex flex-col md:flex-row items-start md:items-center">
+                        <div class="icon-feature text-5xl md:mr-8 mb-6 md:mb-0"><i class="fas fa-hands-helping"></i></div>
+                        <div>
+                            <h3 class="text-3xl font-semibold text-amber-400 mb-3">IV. Strategic Partnerships & Alliances</h3>
+                            <ul class="list-disc list-inside text-slate-300 text-lg space-y-2">
+                                <li>Global Partner Identification, Recruitment & Negotiation.</li>
+                                <li>Channel Program Development & Management.</li>
+                                <li>Ecosystem Building for Market Innovation and Access.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="dark-card p-8 md:p-10 rounded-xl shadow-2xl flex flex-col md:flex-row items-start md:items-center">
+                        <div class="icon-feature text-5xl md:mr-8 mb-6 md:mb-0"><i class="fas fa-brain"></i></div>
+                        <div>
+                            <h3 class="text-3xl font-semibold text-amber-400 mb-3">V. Business Analysis & Optimization</h3>
+                            <ul class="list-disc list-inside text-slate-300 text-lg space-y-2">
+                                <li>Data-Driven Business Analysis & Competitor Intelligence.</li>
+                                <li>Process Automation & Efficiency (AI, Low-Code).</li>
+                                <li>Complex Project & Product Management Leadership.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="edge" class="section py-20 md:py-32 bg-slate-900/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">The Strativise Edge: Beyond Conventional Consulting</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="illustration-placeholder">
+                        <span>Unique Value Proposition Illustration</span>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-semibold text-amber-400 mb-6">Solving Tomorrow's Challenges, Today.</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-4">
+                            At Strativise, we pride ourselves on identifying and tackling complex business challenges that others overlook. We don't offer cookie-cutter solutions. Instead, we delve deep to unearth unconventional opportunities and craft bespoke strategies that deliver a decisive competitive advantage.
+                        </p>
+                        <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                            Our approach is designed to make your business a natural magnet for your ideal clients and partners, fostering organic growth and establishing you as an industry thought leader from day one. We focus on:
+                        </p>
+                        <ul class="list-none space-y-3 mb-8">
+                            <li class="flex items-start text-slate-300 text-lg">
+                                <i class="fas fa-lightbulb text-amber-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>Unseen Opportunities:</strong> Identifying untapped market niches and innovative revenue streams that align with your core strengths.</span>
+                            </li>
+                            <li class="flex items-start text-slate-300 text-lg">
+                                <i class="fas fa-puzzle-piece text-amber-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>Future-Proof Strategies:</strong> Developing resilient business models and commercial frameworks designed for long-term, sustainable success in dynamic environments.</span>
+                            </li>
+                            <li class="flex items-start text-slate-300 text-lg">
+                                <i class="fas fa-magnet text-amber-500 mr-3 mt-1 flex-shrink-0"></i>
+                                <span><strong>Inherent Attraction:</strong> Crafting a value proposition and market positioning so compelling that it naturally draws in your target audience, reducing reliance on outbound efforts.</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="cta-button font-semibold py-3 px-8 rounded-lg text-lg" data-target="contact" onclick="navigateToSection(event)">Discover Your Untapped Potential</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="section py-20 md:py-32 bg-slate-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">Unlock Insights: Interactive Strategic Tools</h2>
+                <p class="text-center text-slate-300 text-xl mb-12 max-w-3xl mx-auto">
+                    Gain immediate, actionable intelligence with our bespoke calculators and tools. These are designed to provide clarity on complex challenges and highlight growth opportunities, acting as powerful catalysts for strategic decision-making.
+                </p>
+                <div class="space-y-16">
+                    <div class="calculator-module">
+                        <div class="flex items-center mb-6">
+                            <div class="icon-feature text-4xl mr-4"><i class="fas fa-filter"></i></div>
+                            <h3 class="text-3xl font-semibold text-amber-400">Advanced Sales Conversion Funnel Calculator</h3>
+                        </div>
+                        <p class="text-slate-400 mb-8">Determine precisely how many leads you need at each stage of your sales cycle to achieve your revenue targets. Tailor calculations to your specific industry and conversion realities.</p>
+                        <form id="salesFunnelCalc" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="industry" class="block mb-2 text-sm">Select Your Industry:</label>
+                                <select id="industry" name="industry" class="mb-4">
+                                    <option value="saas">Technology (SaaS)</option>
+                                    <option value="it_services">Technology (IT Services)</option>
+                                    <option value="low_code">Technology (Low-Code/No-Code)</option>
+                                    <option value="real_estate">Real Estate Investment</option>
+                                    <option value="professional_services">Professional Services</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="custom">Custom (Enter Own Rates)</option>
+                                </select>
+                                <p class="text-xs text-slate-500 mb-4">Note: Selecting an industry pre-fills average conversion rates. Choose 'Custom' to input your own.</p>
+                            </div>
+                            <div>
+                                <label for="targetRevenue" class="block mb-2 text-sm">Target Revenue ($):</label>
+                                <input type="number" id="targetRevenue" name="targetRevenue" placeholder="e.g., 1000000" class="mb-4">
+                            </div>
+                            <div>
+                                <label for="avgDealSize" class="block mb-2 text-sm">Average Deal Size ($):</label>
+                                <input type="number" id="avgDealSize" name="avgDealSize" placeholder="e.g., 50000" class="mb-4">
+                            </div>
+                            <div>
+                                <label for="salesCycleLength" class="block mb-2 text-sm">Average Sales Cycle Length (Days):</label>
+                                <input type="number" id="salesCycleLength" name="salesCycleLength" placeholder="e.g., 90" class="mb-4">
+                            </div>
+                            <div class="md:col-span-2 space-y-4" id="salesStagesContainer">
+                                <h4 class="text-xl font-semibold text-amber-300 mt-4 mb-2">Sales Stages & Conversion Rates (%)</h4>
+                                <div class="grid grid-cols-2 gap-4 items-end">
+                                    <div><label for="stage1Name" class="block mb-1 text-xs">Stage 1 Name:</label><input type="text" id="stage1Name" value="Lead / Prospect" class="text-sm"></div>
+                                    <div><label for="stage1Rate" class="block mb-1 text-xs">Conversion to Next Stage (%):</label><input type="number" id="stage1Rate" name="stage1Rate" placeholder="e.g., 20" class="text-sm stage-rate"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 items-end">
+                                    <div><label for="stage2Name" class="block mb-1 text-xs">Stage 2 Name:</label><input type="text" id="stage2Name" value="Marketing Qualified Lead (MQL)" class="text-sm"></div>
+                                    <div><label for="stage2Rate" class="block mb-1 text-xs">Conversion to Next Stage (%):</label><input type="number" id="stage2Rate" name="stage2Rate" placeholder="e.g., 50" class="text-sm stage-rate"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 items-end">
+                                    <div><label for="stage3Name" class="block mb-1 text-xs">Stage 3 Name:</label><input type="text" id="stage3Name" value="Sales Qualified Lead (SQL)" class="text-sm"></div>
+                                    <div><label for="stage3Rate" class="block mb-1 text-xs">Conversion to Next Stage (%):</label><input type="number" id="stage3Rate" name="stage3Rate" placeholder="e.g., 60" class="text-sm stage-rate"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 items-end">
+                                    <div><label for="stage4Name" class="block mb-1 text-xs">Stage 4 Name:</label><input type="text" id="stage4Name" value="Opportunity / Demo" class="text-sm"></div>
+                                    <div><label for="stage4Rate" class="block mb-1 text-xs">Conversion to Next Stage (%):</label><input type="number" id="stage4Rate" name="stage4Rate" placeholder="e.g., 40" class="text-sm stage-rate"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 items-end">
+                                    <div><label for="stage5Name" class="block mb-1 text-xs">Stage 5 Name:</label><input type="text" id="stage5Name" value="Proposal / Negotiation" class="text-sm"></div>
+                                    <div><label for="stage5Rate" class="block mb-1 text-xs">Conversion to Closed Won (%):</label><input type="number" id="stage5Rate" name="stage5Rate" placeholder="e.g., 25" class="text-sm stage-rate"></div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 text-center mt-6">
+                                <button type="button" onclick="calculateSalesFunnel()" class="cta-button font-semibold py-3 px-8 rounded-lg text-lg">Calculate Lead Requirements</button>
+                            </div>
+                        </form>
+                        <div id="salesFunnelResults" class="calculator-results"><p>Results will appear here...</p></div>
+                    </div>
+
+                    <div class="calculator-module">
+                        <div class="flex items-center mb-6">
+                            <div class="icon-feature text-4xl mr-4"><i class="fas fa-bullhorn"></i></div>
+                            <h3 class="text-3xl font-semibold text-amber-400">Marketing Campaign ROI & Planner</h3>
+                        </div>
+                        <p class="text-slate-400 mb-8">Project the potential return on your marketing spend and plan campaigns more effectively. Understand key metrics to optimize your marketing efforts.</p>
+                        <form id="marketingCalc" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div><label for="marketingSpend" class="block mb-2 text-sm">Total Marketing Spend ($):</label><input type="number" id="marketingSpend" name="marketingSpend" placeholder="e.g., 10000" class="mb-4"></div>
+                            <div><label for="expectedLeads" class="block mb-2 text-sm">Expected Leads Generated:</label><input type="number" id="expectedLeads" name="expectedLeads" placeholder="e.g., 500" class="mb-4"></div>
+                            <div><label for="leadToCustomerRate" class="block mb-2 text-sm">Lead-to-Customer Conversion Rate (%):</label><input type="number" id="leadToCustomerRate" name="leadToCustomerRate" placeholder="e.g., 5" class="mb-4"></div>
+                            <div><label for="avgCustomerValue" class="block mb-2 text-sm">Average Customer Lifetime Value ($):</label><input type="number" id="avgCustomerValue" name="avgCustomerValue" placeholder="e.g., 2000" class="mb-4"></div>
+                             <div class="md:col-span-2">
+                                <label for="campaignObjective" class="block mb-2 text-sm">Primary Campaign Objective:</label>
+                                <select id="campaignObjective" name="campaignObjective" class="mb-4">
+                                    <option value="brand_awareness">Brand Awareness</option>
+                                    <option value="lead_generation">Lead Generation</option>
+                                    <option value="direct_sales">Direct Sales</option>
+                                    <option value="customer_retention">Customer Retention</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2 text-center mt-6">
+                                <button type="button" onclick="calculateMarketingROI()" class="cta-button font-semibold py-3 px-8 rounded-lg text-lg">Calculate Marketing ROI</button>
+                            </div>
+                        </form>
+                        <div id="marketingResults" class="calculator-results"><p>Results will appear here...</p></div>
+                    </div>
+
+                    <div class="calculator-module">
+                        <div class="flex items-center mb-6">
+                            <div class="icon-feature text-4xl mr-4"><i class="fas fa-handshake-angle"></i></div>
+                            <h3 class="text-3xl font-semibold text-amber-400">Strategic Meeting Impact Calculator</h3>
+                        </div>
+                        <p class="text-slate-400 mb-8">Estimate the number of strategic meetings (e.g., investor pitches, key partnership discussions) required to achieve your high-value objectives.</p>
+                        <form id="meetingCalc" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="meetingObjective" class="block mb-2 text-sm">Primary Meeting Objective:</label>
+                                <select id="meetingObjective" name="meetingObjective" class="mb-4">
+                                    <option value="investment">Secure Investment</option>
+                                    <option value="partnership">Forge Strategic Partnership</option>
+                                    <option value="enterprise_sale">Close Enterprise Sale</option>
+                                    <option value="talent_acquisition">Key Talent Acquisition</option>
+                                </select>
+                            </div>
+                            <div><label for="targetOutcomeValue" class="block mb-2 text-sm">Target Outcome Value ($ or #):</label><input type="number" id="targetOutcomeValue" name="targetOutcomeValue" placeholder="e.g., 500000 or 1 (for 1 key partner)" class="mb-4"></div>
+                            <div><label for="meetingsPerOutcome" class="block mb-2 text-sm">Avg. Meetings per Successful Outcome:</label><input type="number" id="meetingsPerOutcome" name="meetingsPerOutcome" placeholder="e.g., 5" class="mb-4"></div>
+                            <div><label for="meetingSuccessRate" class="block mb-2 text-sm">Overall Meeting Success Rate (%):</label><input type="number" id="meetingSuccessRate" name="meetingSuccessRate" placeholder="e.g., 10 (for 10% of initial meetings leading to success path)" class="mb-4"></div>
+                            <div class="md:col-span-2 text-center mt-6">
+                                <button type="button" onclick="calculateMeetingImpact()" class="cta-button font-semibold py-3 px-8 rounded-lg text-lg">Estimate Meeting Requirements</button>
+                            </div>
+                        </form>
+                        <div id="meetingResults" class="calculator-results"><p>Results will appear here...</p></div>
+                    </div>
+
+                    <div class="tool-module">
+                        <div class="flex items-center mb-6">
+                            <div class="icon-feature text-4xl mr-4"><i class="fas fa-question-circle"></i></div>
+                            <h3 class="text-3xl font-semibold text-amber-400">Interactive Challenge Identifier</h3>
+                        </div>
+                        <p class="text-slate-400 mb-8">Answer a few quick questions to pinpoint your most pressing business challenges and discover how Strativise can provide targeted solutions.</p>
+                        <div class="quiz-placeholder">
+                            <p class="mb-4">Your Interactive Quiz Will Be Embedded Here.</p>
+                            <p class="text-sm mb-4">(e.g., Multiple choice questions leading to tailored advice/service recommendations)</p>
+                            <button class="secondary-cta-button py-2 px-6 rounded-md" onclick="alert('Quiz functionality to be implemented.')">Start Quiz (Conceptual)</button>
+                        </div>
+                        <div id="quizResults" class="tool-results mt-4"><p>Quiz insights will appear here...</p></div>
+                    </div>
+
+                    <div class="tool-module">
+                        <div class="flex items-center mb-6">
+                            <div class="icon-feature text-4xl mr-4"><i class="fas fa-tachometer-alt"></i></div>
+                            <h3 class="text-3xl font-semibold text-amber-400">Growth Potential Scorecard</h3>
+                        </div>
+                        <p class="text-slate-400 mb-8">Input key business metrics to receive a "Growth Potential Score" and identify strategic areas for improvement and expansion with Strativise.</p>
+                        <div class="scorecard-placeholder">
+                             <p class="mb-4">Your Growth Scorecard Input Form & Visualizer Will Be Embedded Here.</p>
+                             <p class="text-sm mb-4">(e.g., Inputs for revenue, market share, team size. Output: Score + brief analysis)</p>
+                            <button class="secondary-cta-button py-2 px-6 rounded-md" onclick="alert('Scorecard functionality to be implemented.')">Get Your Score (Conceptual)</button>
+                        </div>
+                        <div id="scorecardResults" class="tool-results mt-4"><p>Your growth potential score and analysis will appear here...</p></div>
+                    </div>
+                </div>
+                <p class="text-center text-slate-400 mt-16 text-lg">
+                    These tools provide estimates based on your inputs. For a personalized strategic analysis, <a href="#" class="text-amber-500 hover:underline" data-target="contact" onclick="navigateToSection(event)">schedule a consultation</a>.
+                </p>
+            </div>
+        </section>
+
+        <section id="resources" class="section py-20 md:py-32 bg-slate-900/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">Insights & Resources</h2>
+                <p class="text-center text-slate-300 text-xl mb-12 max-w-3xl mx-auto">
+                    Stay ahead with our latest articles, whitepapers, and strategic guides. Unlock valuable knowledge to fuel your business growth.
+                </p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="resource-card">
+                        <img src="https://placehold.co/600x338/1E293B/FAD02C?text=Market+Entry+Trends" alt="Article thumbnail">
+                        <span class="text-xs text-amber-400 uppercase font-semibold">Article</span>
+                        <h3 class="text-2xl font-semibold text-white my-2 hover:text-amber-400 transition-colors"><a href="#">Navigating New Horizons: Key Trends in Global Market Entry for 2025</a></h3>
+                        <p class="text-slate-400 text-sm mb-4">Discover the evolving landscape of international expansion and how to position your business for success...</p>
+                        <a href="#" class="font-semibold text-amber-500 hover:text-amber-300 transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <img src="https://placehold.co/600x338/1E293B/FAD02C?text=Sales+Dept+Blueprint" alt="Whitepaper thumbnail">
+                        <span class="text-xs text-amber-400 uppercase font-semibold">Whitepaper</span>
+                        <h3 class="text-2xl font-semibold text-white my-2 hover:text-amber-400 transition-colors"><a href="#">The Blueprint for a High-Performance Sales Department</a></h3>
+                        <p class="text-slate-400 text-sm mb-4">An in-depth guide to structuring, staffing, and scaling a sales engine that consistently exceeds targets...</p>
+                        <a href="#" class="font-semibold text-amber-500 hover:text-amber-300 transition-colors">Download PDF <i class="fas fa-download ml-1"></i></a>
+                    </div>
+                    <div class="resource-card">
+                        <img src="https://placehold.co/600x338/1E293B/FAD02C?text=Investment+Pitch+Guide" alt="Guide thumbnail">
+                        <span class="text-xs text-amber-400 uppercase font-semibold">Guide</span>
+                        <h3 class="text-2xl font-semibold text-white my-2 hover:text-amber-400 transition-colors"><a href="#">Crafting the Perfect Investment Pitch: A Strativise Guide</a></h3>
+                        <p class="text-slate-400 text-sm mb-4">Key elements, common pitfalls, and expert tips for creating a compelling pitch that secures funding...</p>
+                        <a href="#" class="font-semibold text-amber-500 hover:text-amber-300 transition-colors">View Guide <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="text-center mt-16">
+                     <a href="#" class="cta-button font-semibold py-3 px-8 rounded-lg text-lg" onclick="alert('Navigate to full resource library page - to be created.')">Explore All Insights</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="framework" class="section py-20 md:py-32 bg-slate-900">
+             <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">The Strativise Success Framework</h2>
+                <p class="text-center text-slate-300 text-xl mb-12 max-w-3xl mx-auto">
+                    Our proprietary framework is a proven methodology for diagnosing challenges, architecting solutions, and executing strategies that deliver exceptional results. Explore how we turn vision into value.
+                </p>
+                <div class="framework-visualizer-placeholder">
+                    <p class="mb-4">Interactive Strativise Framework Visualizer Will Be Embedded Here.</p>
+                    <p class="text-sm mb-4">(e.g., A multi-stage animated diagram. Stage 1: Discovery & Analysis -> Stage 2: Strategy Formulation -> Stage 3: Implementation & Execution -> Stage 4: Optimization & Scaling)</p>
+                    <i class="fas fa-sitemap text-6xl text-amber-500 opacity-50"></i>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="portfolio" class="section py-20 md:py-32 bg-slate-900/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">Transformations Delivered: Success Stories</h2>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                    <div class="portfolio-card dark-card rounded-xl shadow-2xl overflow-hidden group">
+                        <img src="https://placehold.co/600x400/1E293B/FAD02C?text=Real+Estate+Victory" alt="World Real Estate Case Study" class="w-full h-72 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-4">World Real Estate: Global Market Dominance</h3>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Challenge:</strong> The company had Russian teams, but an international department was non-existent (only 2 people, 1 deal from an agency). Despite it being a new industry for me, I took on the challenge. Key issues included reliance on low-commission agencies, lack of data-driven decision-making, and unmotivated teams with long deal cycles (1 deal per 3 months via agencies).</p>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Strativise Action:</strong> Implemented reporting dashboards for data-based decisions. Shifted strategy from agencies to direct developer partnerships for higher commissions. Restructured and motivated the international team, optimizing processes.</p>
+                            <p class="text-slate-300 font-semibold"><strong class="text-amber-500">Result:</strong> Within 9 months, expanded into 9 different regions. Achieved 49.8% profitability. Revenue grew 10x. MRR boosted from 0.6% to 10%. High-performing managers closed ~3 deals per month directly from developers, a significant uplift from the previous 1 deal per 3 months from agencies.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-card dark-card rounded-xl shadow-2xl overflow-hidden group">
+                        <img src="https://placehold.co/600x400/1E293B/FAD02C?text=Tech+Startup+Scaling" alt="GROWmatica Case Study" class="w-full h-72 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-4">€1M+ ARR for Tech Innovators via GROWmatica</h3>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Challenge:</strong> Emerging tech startups facing barriers to international sales and market penetration.</p>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Strativise Action:</strong> Pinpointed high-value opportunities, secured Gartner-listed clientele, spearheaded new product launches.</p>
+                            <p class="text-slate-300 font-semibold"><strong class="text-amber-500">Result:</strong> Over €1M in new Annual Recurring Revenue, established strong client footholds in Nordics & DACH.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-card dark-card rounded-xl shadow-2xl overflow-hidden group">
+                        <img src="https://placehold.co/600x400/1E293B/FAD02C?text=Investment+Dept+Build" alt="Orbita Investments Case Study" class="w-full h-72 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold text-amber-400 mb-4">Orbita Investments: 35% Conversion Leap</h3>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Challenge:</strong> Absence of a structured commercial department to attract and manage investments.</p>
+                            <p class="text-slate-400 mb-3"><strong class="text-slate-200">Strativise Action:</strong> Architected and implemented a full-scale commercial framework, devised targeted sales strategies & KPIs, recruited and mentored a high-caliber sales force.</p>
+                            <p class="text-slate-300 font-semibold"><strong class="text-amber-500">Result:</strong> Commercial department built from zero, achieving a 35% uplift in deal conversion rates and onboarding 50+ strategic sales partners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section py-20 md:py-32 bg-slate-900">
+             <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-display font-bold text-center text-white mb-16 section-title-underline">Let's Strategize Your Success</h2>
+                <div class="max-w-2xl mx-auto dark-card p-8 md:p-12 rounded-xl shadow-2xl">
+                    <p class="text-slate-300 text-lg text-center mb-10">
+                        Ready to explore how Strativise can architect unparalleled growth for your business? Fill out the form below or reach out directly.
+                    </p>
+                    <form id="contactForm">
+                        <div class="mb-6">
+                            <label for="name" class="block text-amber-400 font-semibold mb-2 text-sm">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md bg-slate-700/50 text-slate-100 border border-slate-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/50 outline-none transition-all" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-amber-400 font-semibold mb-2 text-sm">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md bg-slate-700/50 text-slate-100 border border-slate-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/50 outline-none transition-all" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block text-amber-400 font-semibold mb-2 text-sm">Company (Optional)</label>
+                            <input type="text" id="company" name="company" class="w-full p-4 rounded-md bg-slate-700/50 text-slate-100 border border-slate-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/50 outline-none transition-all">
+                        </div>
+                        <div class="mb-8">
+                            <label for="message" class="block text-amber-400 font-semibold mb-2 text-sm">Your Challenge / Opportunity</label>
+                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md bg-slate-700/50 text-slate-100 border border-slate-600 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/50 outline-none transition-all" required placeholder="Briefly describe your business goals or challenges..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="cta-button font-semibold py-4 px-12 rounded-lg text-lg">Initiate Discussion</button>
+                        </div>
+                    </form>
+                    <div id="formMessage" class="mt-8 text-center"></div>
+
+                    <div class="mt-16 text-center text-slate-300">
+                        <p class="text-lg mb-3">Alternatively, connect directly:</p>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-amber-500"></i> <a href="mailto:aakhan023@gmail.com" class="hover:text-amber-400 transition-colors">aakhan023@gmail.com</a></p>
+                        <p>
+                            <a href="https://www.linkedin.com/in/ali-shahad-93532ba0" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:text-amber-300 transition-colors text-xl inline-flex items-center">
+                                <i class="fab fa-linkedin mr-2"></i> Connect on LinkedIn
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900/80 text-slate-400 py-16 text-center border-t border-slate-700">
+        <div class="container mx-auto px-6">
+            <a href="#" class="text-3xl font-display font-bold text-gradient mb-4 inline-block" data-target="home" onclick="navigateToSection(event)">Strativise</a>
+            <p class="mb-2">&copy; <span id="currentYear"></span> Strativise. All Rights Reserved.</p>
+            <p class="text-sm">Pioneering Growth. Engineering Success.</p>
+            <div class="mt-6 space-x-6">
+                <a href="#" class="hover:text-amber-400 transition-colors" data-target="home" onclick="navigateToSection(event)">Home</a>
+                <a href="#" class="hover:text-amber-400 transition-colors" data-target="about" onclick="navigateToSection(event)">About</a>
+                <a href="#" class="hover:text-amber-400 transition-colors" data-target="services" onclick="navigateToSection(event)">Services</a>
+                <a href="#" class="hover:text-amber-400 transition-colors" data-target="contact" onclick="navigateToSection(event)">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Industry-based average conversion rates (conceptual)
+        const industryConversionRates = {
+            saas: [20, 50, 60, 30, 25], // Lead, MQL, SQL, Opportunity, Proposal -> Won
+            it_services: [15, 45, 55, 25, 20],
+            low_code: [25, 55, 65, 35, 30],
+            real_estate: [10, 30, 40, 20, 15],
+            professional_services: [18, 40, 50, 28, 22],
+            ecommerce: [5, 20, 30, 15, 10], 
+            custom: [] 
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+            const industrySelect = document.getElementById('industry');
+            const salesStageRates = document.querySelectorAll('.stage-rate');
+            
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            function showSection(targetId, isPopState = false) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active-nav');
+                    }
+                });
+                if (!isPopState) {
+                    history.pushState({page: targetId}, null, `#${targetId}`);
+                }
+                window.scrollTo(0, 0); 
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const targetId = this.dataset.target;
+                    showSection(targetId);
+                });
+            });
+            
+            function handleHashChange() {
+                const hash = window.location.hash.substring(1);
+                const defaultSection = 'home';
+                let targetSectionId = defaultSection;
+                if (hash) {
+                    const targetElement = document.getElementById(hash);
+                    if (targetElement && targetElement.classList.contains('section')) {
+                        targetSectionId = hash;
+                    }
+                }
+                showSection(targetSectionId, true);
+            }
+
+            window.addEventListener('popstate', function(event) {
+                if (event.state && event.state.page) {
+                    showSection(event.state.page, true);
+                } else if (window.location.hash) {
+                    handleHashChange();
+                } else {
+                    showSection('home', true);
+                }
+            });
+            
+            handleHashChange(); 
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    if (!name || !email || !message) {
+                        formMessage.textContent = 'Please fill out all required fields.';
+                        formMessage.className = 'mt-8 text-center text-red-400';
+                        return;
+                    }
+                    if (!/^\S+@\S+\.\S+$/.test(email)) {
+                         formMessage.textContent = 'Please enter a valid email address.';
+                         formMessage.className = 'mt-8 text-center text-red-400';
+                         return;
+                    }
+                    formMessage.textContent = 'Thank you! Your message has been notionally sent. We will get back to you soon.';
+                    formMessage.className = 'mt-8 text-center text-green-400';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        formMessage.textContent = '';
+                        formMessage.className = 'mt-8 text-center';
+                    }, 7000);
+                });
+            }
+
+            if (industrySelect) {
+                industrySelect.addEventListener('change', function() {
+                    const selectedIndustry = this.value;
+                    const rates = industryConversionRates[selectedIndustry];
+                    if (rates && rates.length > 0) {
+                        salesStageRates.forEach((input, index) => {
+                            if (rates[index] !== undefined) {
+                                input.value = rates[index];
+                                input.disabled = false;
+                            }
+                        });
+                    } else if (selectedIndustry === 'custom') {
+                         salesStageRates.forEach(input => {
+                            input.value = '';
+                            input.placeholder = 'Enter %';
+                            input.disabled = false;
+                        });
+                    }
+                });
+                industrySelect.dispatchEvent(new Event('change'));
+            }
+        });
+
+        function navigateToSection(event) {
+            event.preventDefault();
+            const targetId = event.currentTarget.dataset.target;
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.dataset.target === targetId) {
+                    link.classList.add('active-nav');
+                }
+            });
+            window.scrollTo(0, 0);
+            history.pushState({page: targetId}, null, `#${targetId}`);
+        }
+
+        function calculateSalesFunnel() {
+            const resultsDiv = document.getElementById('salesFunnelResults');
+            const targetRevenue = parseFloat(document.getElementById('targetRevenue').value) || 0;
+            const avgDealSize = parseFloat(document.getElementById('avgDealSize').value) || 1; 
+            
+            if (targetRevenue === 0 || avgDealSize === 0) {
+                resultsDiv.innerHTML = `<p class="text-red-400">Please enter valid Target Revenue and Average Deal Size.</p>`;
+                return;
+            }
+
+            const dealsNeeded = Math.ceil(targetRevenue / avgDealSize);
+            let stagesHtml = `<h4 class="text-xl font-semibold text-amber-300 mb-3">Lead Requirements:</h4>`;
+            stagesHtml += `<p>To achieve $${targetRevenue.toLocaleString()} with an average deal size of $${avgDealSize.toLocaleString()}, you need to close <strong class="text-white">${dealsNeeded}</strong> deals.</p><hr class="my-3 border-slate-700">`;
+
+            const stageRates = [];
+            const stageNames = [];
+            document.querySelectorAll('#salesStagesContainer .stage-rate').forEach((input, index) => {
+                stageRates.push(parseFloat(input.value) / 100 || 0);
+                stageNames.push(document.getElementById(`stage${index+1}Name`).value || `Stage ${index+1}`);
+            });
+            
+            let currentLeadsForStage = dealsNeeded; // Start with deals needed for the last stage (Closed Won)
+            
+            // Iterate backwards from the stage just BEFORE "Closed Won"
+            for (let i = stageRates.length - 1; i >= 0; i--) {
+                let leadsAtThisStageName = stageNames[i];
+                let conversionRateToNext = stageRates[i]; // This is the rate from THIS stage to the NEXT (or to Closed Won for the last rate)
+
+                if (i === stageRates.length - 1) { // This is the conversion rate for Proposal/Negotiation to Closed Won
+                     if (conversionRateToNext > 0) {
+                        currentLeadsForStage = Math.ceil(dealsNeeded / conversionRateToNext);
+                     } else {
+                        currentLeadsForStage = Infinity;
+                     }
+                     stagesHtml += `<p>To get ${dealsNeeded} <strong class="text-white">Closed Won Deals</strong>, you need approx. <strong class="text-white">${currentLeadsForStage === Infinity ? "Infinity" : currentLeadsForStage.toLocaleString()}</strong> <strong class="text-white">${leadsAtThisStageName}</strong> (at ${conversionRateToNext*100}% conversion).</p>`;
+                } else { // For all prior stages
+                    let leadsNeededForNextStage = currentLeadsForStage; // This is the number of leads needed for the stage we just calculated
+                    if (conversionRateToNext > 0) {
+                        currentLeadsForStage = Math.ceil(leadsNeededForNextStage / conversionRateToNext);
+                    } else {
+                        currentLeadsForStage = Infinity;
+                    }
+                    stagesHtml += `<p>To get ${leadsNeededForNextStage === Infinity ? "Infinity" : leadsNeededForNextStage.toLocaleString()} <strong class="text-white">${stageNames[i+1]}</strong>, you need approx. <strong class="text-white">${currentLeadsForStage === Infinity ? "Infinity" : currentLeadsForStage.toLocaleString()}</strong> <strong class="text-white">${leadsAtThisStageName}</strong> (at ${conversionRateToNext*100}% conversion to next stage).</p>`;
+                }
+            }
+             stagesHtml += `<p class="mt-4 text-amber-400 font-bold">Total Initial Leads/Prospects Needed: <strong class="text-white text-2xl">${currentLeadsForStage === Infinity ? "Infinity (check 0% conversion stages)" : currentLeadsForStage.toLocaleString()}</strong></p>`;
+            resultsDiv.innerHTML = stagesHtml;
+        }
+
+        function calculateMarketingROI() {
+            const resultsDiv = document.getElementById('marketingResults');
+            const spend = parseFloat(document.getElementById('marketingSpend').value) || 0;
+            const leads = parseFloat(document.getElementById('expectedLeads').value) || 0;
+            const conversionRate = parseFloat(document.getElementById('leadToCustomerRate').value) / 100 || 0;
+            const ltv = parseFloat(document.getElementById('avgCustomerValue').value) || 0;
+
+            if(spend === 0 && leads === 0 && conversionRate === 0 && ltv === 0) { // Allow calculation even if some are zero, but not all
+                resultsDiv.innerHTML = `<p class="text-red-400">Please fill in at least one field with a valid number.</p>`;
+                return;
+            }
+            if(leads === 0 && spend > 0) { // Avoid division by zero for CPL if no leads but spend exists
+                resultsDiv.innerHTML = `<p class="text-red-400">Cannot calculate CPL/CPA with zero leads and positive spend.</p>`;
+                return;
+            }
+
+
+            const customers = leads * conversionRate;
+            const totalRevenue = customers * ltv;
+            const profit = totalRevenue - spend;
+            const roi = spend > 0 ? (profit / spend) * 100 : (totalRevenue > 0 ? Infinity : 0); // Handle ROI if spend is 0
+            const costPerLead = leads > 0 ? spend / leads : 0;
+            const costPerAcquisition = customers > 0 ? spend / customers : 0;
+
+            resultsDiv.innerHTML = `
+                <h4 class="text-xl font-semibold text-amber-300 mb-3">Projected Marketing ROI:</h4>
+                <p>Expected Customers: <strong class="text-white">${customers.toFixed(2)}</strong></p>
+                <p>Expected Total Revenue: <strong class="text-white">$${totalRevenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Expected Profit: <strong class="text-white">$${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Return on Investment (ROI): <strong class="text-white ${roi >= 0 ? 'text-green-400' : 'text-red-400'}">${roi === Infinity ? 'Infinite (No Spend)' : roi.toFixed(2) + '%'}</strong></p>
+                <hr class="my-3 border-slate-700">
+                <p>Cost Per Lead (CPL): <strong class="text-white">$${costPerLead.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+                <p>Cost Per Acquisition (CPA): <strong class="text-white">$${costPerAcquisition.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</strong></p>
+            `;
+        }
+
+        function calculateMeetingImpact() {
+            const resultsDiv = document.getElementById('meetingResults');
+            const objective = document.getElementById('meetingObjective').value;
+            const targetValue = parseFloat(document.getElementById('targetOutcomeValue').value) || 0;
+            const meetingsPerOutcome = parseFloat(document.getElementById('meetingsPerOutcome').value) || 1;
+            const successRate = parseFloat(document.getElementById('meetingSuccessRate').value) / 100 || 0;
+
+            if (targetValue === 0 || meetingsPerOutcome === 0 || successRate === 0) {
+                 resultsDiv.innerHTML = `<p class="text-red-400">Please fill in all fields with valid numbers greater than zero.</p>`;
+                return;
+            }
+            
+            const successfulMeetingSequencesNeeded = targetValue; // Assuming targetValue is the number of desired outcomes.
+            const totalMeetingsForSuccessfulSequences = successfulMeetingSequencesNeeded * meetingsPerOutcome;
+            const initialMeetingsRequired = Math.ceil(totalMeetingsForSuccessfulSequences / successRate);
+
+            resultsDiv.innerHTML = `
+                <h4 class="text-xl font-semibold text-amber-300 mb-3">Strategic Meeting Requirements:</h4>
+                <p>For Objective: <strong class="text-white">${objective.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</strong></p>
+                <p>To achieve ${targetValue.toLocaleString()} successful outcome(s), you'll need approximately:</p>
+                <p class="text-2xl text-amber-400 my-2"><strong class="text-white">${initialMeetingsRequired.toLocaleString()}</strong> initial strategic meetings.</p>
+                <p class="text-xs text-slate-500">(This assumes an average of ${meetingsPerOutcome} meetings per successful outcome path and an overall success rate of ${successRate*100}% from initial meeting to achieving the objective path).</p>
+            `;
+        }
+    </script>
+</body>
+</html>
